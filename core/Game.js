@@ -109,8 +109,8 @@ Game.prototype = {
 	// add to the scene
 	this.scene.add(pointLight);
 
-	this.player = new Cursor(this.scene);
-	this.animatedBackground = new Background(this.scene);
+	this.player = new Cursor(this);
+	this.animatedBackground = new Background(this);
 
 	},
 

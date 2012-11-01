@@ -3,9 +3,10 @@
 * The player is materialized by a small equilateral triangle
 **/
 
-function Cursor(sceneRef){
+function Cursor(gameRef){
 
-	this.scene = sceneRef;
+	this.game = gameRef;
+	this.scene = gameRef.scene;
 	this.geometry = new THREE.Geometry();
 
 	// Misc
@@ -42,8 +43,17 @@ Cursor.prototype = {
 		else if(!keyboard[KEY_LEFT] && keyboard[KEY_RIGHT])
 				delta = -0.1;
 	
+
+		// Translate
+		var alpha = this.game.animatedBackground.hexagon.mesh.rotation.z;
+		var distance = 18;
+		var distanceSup = 10;
+		var animSpeed = 8;
+
 		this.mesh.position = new THREE.Vector3(0.0,0.0,0.0); 
-		this.mesh.translateY(30);
+		this.mesh.translateY(distance+distanceSup*Math.abs(Math.sin(animSpeed*alpha)));
+
+		// Rotate
 		if(delta != 0.0)
 			this.mesh.rotation.z+=delta;
 

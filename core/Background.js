@@ -6,10 +6,11 @@
 * - Walls (?)
 **/
 
-function Background(sceneRef){
+function Background(gameRef){
 
-	this.scene = sceneRef;
-	
+	this.game = gameRef;
+	this.scene = gameRef.scene;
+
 	this.hexagon = new Hexagon();
 	this.strips = new Strips();
 	

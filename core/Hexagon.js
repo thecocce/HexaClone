@@ -8,7 +8,9 @@ function Hexagon(){
 
 	this.geometry = new THREE.Geometry();
 
-	var ray = new THREE.Vector3(-20,20,0);
+	var size = 18;
+
+	var ray = new THREE.Vector3(-size,size,0);
 	var rotRay = new THREE.Matrix4();
 	rotRay.makeRotationZ(Math.PI/3);
 
@@ -48,18 +50,14 @@ Hexagon.prototype = {
 
 	update:function(){
 
-		var delta = 0.0;
-
-		// Move
-		//if(keyboard[KEY_LEFT] && !keyboard[KEY_RIGHT])
-				delta = 0.01;
-		//else if(!keyboard[KEY_LEFT] && keyboard[KEY_RIGHT])
-		//		delta = -0.1;
-	
-		//this.mesh.position = new THREE.Vector3(0.0,0.0,0.0); 
-		//this.mesh.translateY(30);
-		//if(delta != 0.0)
-				this.mesh.rotation.z+=delta;
+		// Rotate
+		var delta = 0.01;
+		this.mesh.rotation.z+=delta;
+		// Shear
+		var minSize = 0.6;
+		var animSpeed = 8;
+		this.mesh.scale.x = minSize + Math.abs((1-minSize)*Math.sin(animSpeed*this.mesh.rotation.z));
+		this.mesh.scale.y = minSize + Math.abs((1-minSize)*Math.sin(animSpeed*this.mesh.rotation.z));
 
 	},
 
