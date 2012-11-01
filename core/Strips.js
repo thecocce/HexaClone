@@ -32,7 +32,6 @@ function Strips(){
 
 	// Colors
 	for(var i = 0 ; i < this.geometry.faces.length ; ++i){
-		console.log(this.geometry.faces[i]);
 		this.geometry.faces[i].color = color[i%2];
 	}
 

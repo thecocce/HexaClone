@@ -13,7 +13,7 @@ function Cursor(gameRef){
 	var normal = new THREE.Vector3( 0, 0, 1 ); 
 	
 	// Draw a triangle
-	var size = 7;
+	var size = 5;
 	this.geometry.vertices.push( new THREE.Vector3( -size, 0, 0 ) );
 	this.geometry.vertices.push( new THREE.Vector3( size, 0, 0 ) );
 	this.geometry.vertices.push( new THREE.Vector3( 0, 1.7*size, 0 ) ); // sqrt(3)
@@ -21,7 +21,7 @@ function Cursor(gameRef){
 	// create the cursor's material
 	this.material = new THREE.MeshLambertMaterial(
 	    {
-	      color: 0x00EE00
+	      color: 0xFFFFFF
 	    }
 	);
 
