@@ -8,28 +8,23 @@
 
 function Background(sceneRef){
 
-
-	// this.graphicElements = [new Hexagon()];
-
+	this.scene = sceneRef;
+	
+	this.hexagon = new Hexagon();
+	this.strips = new Strips();
+	
+	this.scene.add(this.hexagon.mesh);
+	this.scene.add(this.strips.mesh);
+	
 
 }
 
 Background.prototype = {
 
-	update:function(keyboard){
+	update:function(){
 
-		var delta = 0.0;
-
-		// Move
-		if(keyboard[KEY_LEFT] && !keyboard[KEY_RIGHT])
-				delta = 0.1;
-		else if(!keyboard[KEY_LEFT] && keyboard[KEY_RIGHT])
-				delta = -0.1;
-	
-		this.mesh.position = new THREE.Vector3(0.0,0.0,0.0); 
-		this.mesh.translateY(30);
-		if(delta != 0.0)
-			this.mesh.rotation.z+=delta;
+		this.strips.update();
+		this.hexagon.update();
 
 	},
 

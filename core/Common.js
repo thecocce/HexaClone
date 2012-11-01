@@ -18,6 +18,7 @@ const T_MUSIC = 4;
 // Consts
 const SCREEN_WIDTH = 400; // Screen size
 const SCREEN_HEIGHT = 300;
+const FAR = 1000;
 const UNIT_WIDTH = 25; // Square block size
 const UNIT_HEIGHT = 25;  
 

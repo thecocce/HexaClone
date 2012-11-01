@@ -1,41 +1,46 @@
 /** 
-*	Hexagon.js 
-* 	Draw a plain spinning hexagon.
-**/
+* Strips.js
+* Bi-colored background strips
+*/
 
-
-function Hexagon(){
+function Strips(){
 
 	this.geometry = new THREE.Geometry();
 
-	var ray = new THREE.Vector3(-20,20,0);
+	var ray = new THREE.Vector3(-FAR,FAR,0);
 	var rotRay = new THREE.Matrix4();
 	rotRay.makeRotationZ(Math.PI/3);
 
 	// Misc
 	var normal = new THREE.Vector3( 0, 0, 1 ); 
-	
+	var color = [new THREE.Color( 0xBB0000 ),new THREE.Color( 0xDD0000 )];
+
+	// Center
+	this.geometry.vertices.push( new THREE.Vector3(0,0,0));
 	// Compute six vertices
 	this.geometry.vertices.push( new THREE.Vector3(ray.x,ray.y,ray.z ));
 	for(var i = 0 ; i < 5 ; ++i){
 		var temp = rotRay.multiplyVector3(ray);
 		ray = new THREE.Vector3(temp.x,temp.y,temp.z);
-		this.geometry.vertices.push( new THREE.Vector3(ray.x,ray.y,ray.z ));
+		this.geometry.vertices.push( new THREE.Vector3(ray.x,ray.y,ray.z));
 	}
-	// Draw a hexagon
-	// . Center square (0,2,3,5)
-	this.geometry.faces.push( new THREE.Face4( 0, 2, 3, 5 ,normal,null,0));
-	// . Left triangle
-	this.geometry.faces.push( new THREE.Face3( 0, 1, 2 ,normal,null,0));
-	// . Right triangle
-	this.geometry.faces.push( new THREE.Face3( 3, 4, 5 ,normal,null,0));
+	// Draw triangles
+	for(var i = 0 ; i < 6 ; ++i)
+		this.geometry.faces.push( new THREE.Face3( 0, i, i+1));
+	this.geometry.faces.push( new THREE.Face3(0,6,1));
+
+
+	// Colors
+	for(var i = 0 ; i < this.geometry.faces.length ; ++i){
+		console.log(this.geometry.faces[i]);
+		this.geometry.faces[i].color = color[i%2];
+	}
 
 	
-	
 	// create the cursor's material
-	this.material = new THREE.MeshLambertMaterial(
+	this.material = new THREE.MeshBasicMaterial(
 	    {
-	      color: 0xAA0000,
+	      vertexColors: true,
 	      // wireframe: true,
 	    }
 	);
@@ -44,7 +49,7 @@ function Hexagon(){
 	this.mesh  = new THREE.Mesh(this.geometry,this.material);
 }
 
-Hexagon.prototype = {
+Strips.prototype = {
 
 	update:function(){
 
