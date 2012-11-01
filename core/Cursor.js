@@ -1,17 +1,17 @@
 /**
 * Cursor.js
+* The player is materialized by a small equilateral triangle
 **/
 
-function Cursor(sceneRef){
+function Cursor(){
 
-	this.scene = sceneRef;
 	this.geometry = new THREE.Geometry();
 	// Draw a triangle
-	this.geometry.vertices.push( new THREE.Vector3( -10, 0, 0 ) );
-	this.geometry.vertices.push( new THREE.Vector3( 10, 0, 0 ) );
-	this.geometry.vertices.push( new THREE.Vector3( 0, 20, 0 ) );
+	var size = 7;
+	this.geometry.vertices.push( new THREE.Vector3( -size, 0, 0 ) );
+	this.geometry.vertices.push( new THREE.Vector3( size, 0, 0 ) );
+	this.geometry.vertices.push( new THREE.Vector3( 0, 1.7*size, 0 ) ); // sqrt(3)
 	this.geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-
 	// create the cursor's material
 	this.material = new THREE.MeshLambertMaterial(
 	    {
@@ -21,9 +21,6 @@ function Cursor(sceneRef){
 
 	// create a new mesh with
 	this.mesh  = new THREE.Mesh(this.geometry,this.material);
-
-	// add the mesh to the scene
-	this.scene.add(this.mesh);
 }
 
 Cursor.prototype = {

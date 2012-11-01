@@ -109,7 +109,11 @@ Game.prototype = {
 	// add to the scene
 	this.scene.add(pointLight);
 
-	this.cursor = new Cursor(this.scene);
+	this.cursor = new Cursor();
+	this.hexagon = new Hexagon();
+
+	this.scene.add(this.cursor.mesh);
+	this.scene.add(this.hexagon.mesh);
 
 	},
 
@@ -130,6 +134,7 @@ Game.prototype = {
 		//this.camera.rotation.z+=0.01;
 
 		this.cursor.update(this.keyboard.status);
+		this.hexagon.update(this.keyboard.status);
 
 	},
 
