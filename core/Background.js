@@ -35,7 +35,7 @@ Background.prototype = {
 	update:function(){
 
 		for(w in this.walls)
-			//this.walls[w].update();
+			this.walls[w].update();
 		this.strips.update();
 		this.hexagon.update();
 
